@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import NotFound from "./pages/NotFound";
 import QuestionDetailsPage from "./pages/QuestionDetailsPage";
 import routes from "./routes/routes";
 
@@ -12,6 +13,7 @@ function App() {
         path={routes.questionDetails(":qId")}
         element={<QuestionDetailsPage />}
       />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
