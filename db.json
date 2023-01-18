@@ -1,0 +1,20 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "user": {
+            "name": "Sina Majidi"
+        },
+        "title": "Lorem Ipsum",
+        "description": "abc abc dbs hhhsj cnhhs nnnhc kksm dhhyahs  bbbsh a n hsdhds"
+      },
+      {
+        "id": 2,
+        "user": {
+            "name": "Elnaz Shakerdoost"
+        },
+        "title": "Lorem Ipsum",
+        "description": "abc abc dbs hhhsj cnhhs nnnhc kksm dhhyahs  bbbsh a n hsdhds"
+      }
+    ]
+  }
