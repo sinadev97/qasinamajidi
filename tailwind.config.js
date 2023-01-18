@@ -17,6 +17,7 @@ module.exports = {
           DEFAULT: "#27AE60",
           dark: "#1e944f",
         },
+        error: "#F16063",
       },
 
       boxShadow: {

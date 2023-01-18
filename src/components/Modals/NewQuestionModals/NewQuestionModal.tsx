@@ -7,7 +7,7 @@ const NewQuestionModal = () => {
   const dispatch = useDispatch();
   return (
     <Portal>
-      <div className="h-full w-full inset-0 fixed bg-black/40 flex items-center justify-center">
+      <div className="h-full w-full inset-0 fixed bg-black/40 flex items-center justify-center z-10">
         <div className="flex flex-col bg-gray-lighter w-full max-w-[700px] rounded-lg">
           <div className="flex items-center justify-between px-6 py-3 rounded-lg shadow-sm">
             <div className="font-extrabold">ایجاد سوال جدید</div>
