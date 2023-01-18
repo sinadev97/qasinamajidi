@@ -1,12 +1,26 @@
 import { FaCaretDown, FaPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { newQuestionModalAction } from "../../store";
 
 export const Header = ({ title }: { title?: string }) => {
+  const dispatch = useDispatch();
+
+  const newQuestionModal = useSelector(
+    (store: any) => store.newQuestionModal.isOpen
+  );
+
+  const openModalHandler = () => {
+    dispatch(newQuestionModalAction.open());
+  };
+
+  console.log(newQuestionModal);
+
   return (
     <header className="flex items-center justify-between px-14 py-4 bg-white shadow-light">
       <h1 className="font-extrabold text-2xl">{title}</h1>
 
       <div className="flex items-center gap-x-10">
-        <button className="btn btn-primary">
+        <button onClick={openModalHandler} className="btn btn-primary">
           <FaPlus size={10} />
           <span>سوال جدید</span>
         </button>
