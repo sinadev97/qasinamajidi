@@ -14,7 +14,7 @@ export interface Question {
   answer: string[];
 }
 
-const getQuestions = () => {
+const getAllQuestions = () => {
   return axios.get("/questions");
 };
 
@@ -23,7 +23,27 @@ export const useAllQuestions = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getQuestions()
+    getAllQuestions()
+      .then((res) => setData(res.data))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  return {
+    data,
+    isLoading,
+  };
+};
+
+const getQuestion = ({ qId }: { qId: string }) => {
+  return axios.get(`/questions/${qId}`);
+};
+
+export const useQuestion = ({ qId }: { qId: string }) => {
+  const [data, setData] = useState<Question>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getQuestion({ qId })
       .then((res) => setData(res.data))
       .finally(() => setIsLoading(false));
   }, []);
