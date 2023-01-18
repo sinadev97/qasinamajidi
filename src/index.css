@@ -29,7 +29,7 @@
 
 @layer components {
   body {
-   @apply bg-gray-light
+   @apply bg-gray-light text-base
   }
 
   .btn {

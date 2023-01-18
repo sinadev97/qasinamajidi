@@ -7,7 +7,11 @@ function App() {
   return (
     <Routes>
       <Route path={routes.home} element={<HomePage />} />
-      <Route path={routes.details(":qId")} element={<QuestionDetailsPage />} />
+      <Route path={routes.questions} element={<HomePage />} />
+      <Route
+        path={routes.questionDetails(":qId")}
+        element={<QuestionDetailsPage />}
+      />
     </Routes>
   );
 }

@@ -1,6 +1,7 @@
 const routes = {
   home: "/",
-  details: (qId: number | ":qId") => `/details/${qId}`,
+  questions: "/questions",
+  questionDetails: (qId: number | ":qId") => `/questions/${qId}`,
 };
 
 export default routes;

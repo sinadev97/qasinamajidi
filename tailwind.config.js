@@ -3,8 +3,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      spacing: {
+        11: "44px",
+      },
       colors: {
+        base: "#222222",
         gray: {
+          lighter: "#F9F9F9",
           light: "#F7F8F9",
         },
         green: {
