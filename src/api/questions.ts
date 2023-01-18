@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export interface Question {
+export interface UserDto {
+  name: string;
+  avatarSrc: string;
+}
+
+export interface QuestionDto {
   id: number;
-  user: {
-    name: string;
-    avatarSrc: string;
-  };
+  user: UserDto;
   title: string;
   description: string;
   createdTime: string;
@@ -19,7 +21,7 @@ const getAllQuestions = () => {
 };
 
 export const useAllQuestions = () => {
-  const [data, setData] = useState<Question[]>([]);
+  const [data, setData] = useState<QuestionDto[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -39,11 +41,38 @@ const getQuestion = ({ qId }: { qId: string }) => {
 };
 
 export const useQuestion = ({ qId }: { qId: string }) => {
-  const [data, setData] = useState<Question>();
+  const [data, setData] = useState<QuestionDto>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getQuestion({ qId })
+      .then((res) => setData(res.data))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  return {
+    data,
+    isLoading,
+  };
+};
+
+export interface AnswerDto {
+  id: number;
+  questionId: number;
+  description: string;
+  user: UserDto;
+}
+
+const getAnswers = ({ qId }: { qId: number }) => {
+  return axios.get(`/answers`, { params: { questionId: qId } });
+};
+
+export const useAnswers = ({ qId }: { qId: number }) => {
+  const [data, setData] = useState<AnswerDto[]>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getAnswers({ qId })
       .then((res) => setData(res.data))
       .finally(() => setIsLoading(false));
   }, []);

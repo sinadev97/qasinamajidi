@@ -1,14 +1,23 @@
-import { useQuestion } from "../../api/questions";
-import QuestionCard from "../Home/QuestionCard/QuestionCard";
+import { QuestionDto, useAnswers } from "../../api/questions";
+import QuestionCard from "../Home/QuestionCard";
+import AnswerCard from "./AnswerCard";
 
-const QuestionDetails = () => {
-  const { data: question, isLoading } = useQuestion({ qId: "1" });
-
-  console.log(question);
+const QuestionDetails = ({ question }: { question: QuestionDto }) => {
+  const { data, isLoading } = useAnswers({ qId: question.id });
 
   return (
-    <div className="py-8 px-14 flex flex-col gap-y-5">
-      {question && <QuestionCard isShowDetails question={question} />}
+    <div className="py-8 px-14 flex flex-col gap-y-6">
+      <QuestionCard isShowDetails question={question} />
+
+      <div>
+        <div className="text-2xl font-extrabold">پاسخ ها</div>
+
+        <div className="flex flex-col gap-y-4 mt-4">
+          {data?.map((answer) => (
+            <AnswerCard key={answer.id} answer={answer} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useAllQuestions } from "../../api/questions";
-import QuestionCard from "./QuestionCard/QuestionCard";
+import QuestionCard from "./QuestionCard";
 
 const Home = () => {
   const { data: questions, isLoading } = useAllQuestions();

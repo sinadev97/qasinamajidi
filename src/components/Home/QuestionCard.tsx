@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Question } from "../../../api/questions";
-import routes from "../../../routes/routes";
+import { QuestionDto } from "../../api/questions";
+import routes from "../../routes/routes";
 
 const QuestionCard = ({
   question,
   isShowDetails,
 }: {
-  question: Question;
+  question: QuestionDto;
   isShowDetails?: boolean;
 }) => {
   return (
