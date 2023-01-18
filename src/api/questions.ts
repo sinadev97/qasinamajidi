@@ -1,20 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-export interface UserDto {
-  name: string;
-  avatarSrc: string;
-}
-
-export interface QuestionDto {
-  id: number;
-  user: UserDto;
-  title: string;
-  description: string;
-  createdTime: string;
-  createdDate: string;
-  answer: string[];
-}
+import { AnswerDto, QuestionDto } from "../types";
 
 const getAllQuestions = () => {
   return axios.get("/questions");
@@ -55,13 +41,6 @@ export const useQuestion = ({ qId }: { qId: string }) => {
     isLoading,
   };
 };
-
-export interface AnswerDto {
-  id: number;
-  questionId: number;
-  description: string;
-  user: UserDto;
-}
 
 const getAnswers = ({ qId }: { qId: number }) => {
   return axios.get(`/answers`, { params: { questionId: qId } });

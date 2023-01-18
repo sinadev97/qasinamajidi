@@ -1,5 +1,4 @@
-import React from "react";
-import { AnswerDto } from "../../api/questions";
+import { AnswerDto } from "../../types";
 
 const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
   return (

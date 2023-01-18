@@ -1,4 +1,5 @@
-import { QuestionDto, useAnswers } from "../../api/questions";
+import { useAnswers } from "../../api/questions";
+import { QuestionDto } from "../../types";
 import QuestionCard from "../Home/QuestionCard";
 import AnswerCard from "./AnswerCard";
 
