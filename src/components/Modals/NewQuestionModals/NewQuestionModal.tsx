@@ -1,10 +1,10 @@
 import { FaTimes } from "react-icons/fa";
+import { useNewQuestionState } from "../../../hooks/useNewQuestionState";
 import Portal from "../../Portal";
-import { newQuestionModalAction } from "../../../store";
-import { useDispatch } from "react-redux";
 
 const NewQuestionModal = () => {
-  const dispatch = useDispatch();
+  const { inputsValue, setTitle, setDescription, closeModal } =
+    useNewQuestionState();
   return (
     <Portal>
       <div className="h-full w-full inset-0 fixed bg-black/40 flex items-center justify-center z-10">
@@ -13,7 +13,7 @@ const NewQuestionModal = () => {
             <div className="font-extrabold">ایجاد سوال جدید</div>
 
             <button
-              onClick={() => dispatch(newQuestionModalAction.close())}
+              onClick={closeModal}
               className="text-gray-darker cursor-pointer"
             >
               <FaTimes size={18} />
@@ -21,25 +21,26 @@ const NewQuestionModal = () => {
           </div>
 
           <div className="px-6 pb-6 flex flex-col ">
-            <div className="text-sm text-gray-darker mt-4 ">موضوع</div>
+            <div className="text-sm text-gray-darker mt-4">موضوع</div>
 
             <input
+              value={inputsValue.title}
               type="text"
               className="bg-white px-6 py-3 rounded-lg mt-2.5 outline-none text-sm shadow-sm"
+              onChange={(e) => setTitle(e.target.value)}
             />
 
             <div className="text-sm text-gray-darker mt-4 ">متن سوال</div>
 
             <textarea
+              value={inputsValue.description}
               className="bg-white px-6 py-3 rounded-lg mt-2.5 outline-none resize-none text-sm shadow-sm"
               rows={8}
+              onChange={(e) => setDescription(e.target.value)}
             />
 
             <div className="self-end flex items-center gap-x-12 mt-6">
-              <button
-                onClick={() => dispatch(newQuestionModalAction.close())}
-                className="text-green text-xs"
-              >
+              <button onClick={closeModal} className="text-green text-xs">
                 انصراف
               </button>
               <button className="btn btn-primary">ایجاد سوال</button>

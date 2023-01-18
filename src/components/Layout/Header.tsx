@@ -1,27 +1,16 @@
 import { FaCaretDown, FaPlus } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { newQuestionModalAction } from "../../store";
+import { useNewQuestionState } from "../../hooks/useNewQuestionState";
 import NewQuestionModal from "../Modals/NewQuestionModals/NewQuestionModal";
 
 export const Header = ({ title }: { title?: string }) => {
-  const dispatch = useDispatch();
-
-  const newQuestionModal = useSelector(
-    (store: any) => store.newQuestionModal.isOpen
-  );
-
-  const openModalHandler = () => {
-    dispatch(newQuestionModalAction.open());
-  };
-
-  console.log(newQuestionModal);
+  const { isOpen, openModal } = useNewQuestionState();
 
   return (
     <header className="flex items-center justify-between px-14 py-4 bg-white shadow-light">
       <h1 className="font-extrabold text-2xl">{title}</h1>
 
       <div className="flex items-center gap-x-10">
-        <button onClick={openModalHandler} className="btn btn-primary">
+        <button onClick={openModal} className="btn btn-primary">
           <FaPlus size={10} />
           <span>سوال جدید</span>
         </button>
@@ -35,7 +24,7 @@ export const Header = ({ title }: { title?: string }) => {
         </div>
       </div>
 
-      {newQuestionModal && <NewQuestionModal />}
+      {isOpen && <NewQuestionModal />}
     </header>
   );
 };

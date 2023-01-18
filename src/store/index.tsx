@@ -1,24 +1,10 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-const newQuestionSlice = createSlice({
-  name: "newQuestion",
-  initialState: { isOpen: false },
-  reducers: {
-    open: (state) => {
-      state.isOpen = true;
-    },
-    close: (state) => {
-      state.isOpen = false;
-    },
-  },
-});
+import { configureStore } from "@reduxjs/toolkit";
+import newQuestionState from "./newQuestion";
 
 const store = configureStore({
   reducer: {
-    newQuestionModal: newQuestionSlice.reducer,
+    newQuestion: newQuestionState,
   },
 });
-
-export const newQuestionModalAction = newQuestionSlice.actions;
 
 export default store;
