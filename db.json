@@ -29,6 +29,26 @@
         "title": "مشکل در Auth در React",
         "description": "سلام من میخوام یه Auth ساده توی ریکت بسازم ولی این error رو بهم میده و نمیدونم مشکل از کجاست ،‌عکس خروجی console  رو گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
         "code": ""
+      },
+      {
+        "id": 4,
+        "user": {
+            "name": "Sina Majidi",
+            "avatarSrc": "http://localhost:3001/assets/images/3.svg"
+        },
+        "title": "مشکل در Auth در React",
+        "description": "سلام من میخوام یه Auth ساده توی ریکت بسازم ولی این error رو بهم میده و نمیدونم مشکل از کجاست ،‌عکس خروجی console  رو گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
+        "code": ""
+      },
+      {
+        "id": 5,
+        "user": {
+            "name": "Sina Majidi",
+            "avatarSrc": "http://localhost:3001/assets/images/3.svg"
+        },
+        "title": "مشکل در Auth در React",
+        "description": "سلام من میخوام یه Auth ساده توی ریکت بسازم ولی این error رو بهم میده و نمیدونم مشکل از کجاست ،‌عکس خروجی console  رو گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
+        "code": ""
       }
     ],
     "answers": [

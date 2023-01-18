@@ -1,6 +1,7 @@
 import { FaCaretDown, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { newQuestionModalAction } from "../../store";
+import NewQuestionModal from "../Modals/NewQuestionModals/NewQuestionModal";
 
 export const Header = ({ title }: { title?: string }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,8 @@ export const Header = ({ title }: { title?: string }) => {
           <FaCaretDown size={20} className="text-gray-300" />
         </div>
       </div>
+
+      {newQuestionModal && <NewQuestionModal />}
     </header>
   );
 };
