@@ -2,6 +2,7 @@ export interface QuestionDto {
   id: number;
   title: string;
   description: string;
+  createDate: number;
 }
 
 export interface QuestionCreateDto {
@@ -13,4 +14,5 @@ export interface AnswerDto {
   userName: string;
   questionId: number;
   description: string;
+  createDate: number;
 }

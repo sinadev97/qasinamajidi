@@ -1,6 +1,14 @@
 import { useFetchAllQuestions } from "../../api/questions.api";
 import QuestionCard from "./QuestionCard";
 
+const options = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minutes: "numeric",
+};
+
 const Home = () => {
   const { data: questions, isLoading } = useFetchAllQuestions();
 

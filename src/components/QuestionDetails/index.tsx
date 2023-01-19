@@ -21,6 +21,7 @@ const QuestionDetails = ({ question }: { question: QuestionDto }) => {
         userName: "sinamajidi",
         questionId: question.id,
         description: inputValue,
+        createDate: Date.now(),
       },
       { onSuccsess: () => setInputValue("") }
     );

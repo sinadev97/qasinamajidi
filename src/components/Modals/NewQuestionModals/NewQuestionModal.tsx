@@ -18,7 +18,10 @@ const NewQuestionModal = () => {
 
   const createQuestion = () => {
     if (inputValues.description && inputValues.title) {
-      return mutate(inputValues);
+      return mutate({
+        ...inputValues,
+        createDate: Date.now(),
+      });
     }
 
     if (!inputValues.description)
