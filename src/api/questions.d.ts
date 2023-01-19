@@ -1,21 +1,17 @@
-export interface UserDto {
-  name: string;
-  avatarSrc: string;
-}
-
 export interface QuestionDto {
   id: number;
-  user: UserDto;
   title: string;
   description: string;
-  createdTime: string;
-  createdDate: string;
-  answer: string[];
+}
+
+export interface QuestionCreateDto {
+  title: string;
+  description: string;
 }
 
 export interface AnswerDto {
+  userName: string;
   id: number;
   questionId: number;
   description: string;
-  user: UserDto;
 }

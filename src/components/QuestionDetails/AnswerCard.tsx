@@ -6,11 +6,11 @@ const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
       <div className="bg-white rounded-lg px-4 py-2">
         <div className="flex items-center gap-x-4">
           <img
-            className="w-10 h-10 rounded-full"
-            src={answer.user.avatarSrc}
+            className="w-8 h-8 rounded-md"
+            src="http://localhost:3001/assets/images/user3.svg"
             alt="user"
           />
-          <div className="font-medium">{answer.user.name}</div>
+          <div className="font-medium">{answer.userName}</div>
         </div>
 
         <div></div>

@@ -16,7 +16,11 @@ export const Header = ({ title }: { title?: string }) => {
         </button>
 
         <div className="flex items-center gap-x-4">
-          <div className="w-11 h-11 bg-gray-300 rounded-full"></div>
+          <img
+            src="http://localhost:3001/assets/images/user2.svg"
+            alt="user"
+            className="w-11 h-11 bg-gray-300 rounded-full"
+          />
 
           <div className="text-sm">الناز شاکردوست</div>
 
