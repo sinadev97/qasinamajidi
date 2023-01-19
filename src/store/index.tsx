@@ -6,5 +6,5 @@ const store = configureStore({
     newQuestion: newQuestionState,
   },
 });
-
+export type RootState = ReturnType<typeof store.getState>;
 export default store;

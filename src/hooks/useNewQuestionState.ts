@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
 import { newQuestionActions } from "../store/newQuestion";
 
 export const useNewQuestionState = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector((store: any) => store.newQuestion.isOpen);
+  const isOpen = useSelector((store: RootState) => store.newQuestion.isOpen);
   const inputsValue = useSelector(
-    (store: any) => store.newQuestion.inputsValue
+    (store: RootState) => store.newQuestion.inputsValue
   );
 
   const openModal = () => dispatch(newQuestionActions.openModal());
