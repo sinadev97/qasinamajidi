@@ -1,4 +1,4 @@
-import { FaRegCommentDots } from "react-icons/fa";
+import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 import { AnswerDto } from "../../api/questions";
 
 const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
@@ -28,9 +28,15 @@ const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
             <span className="text-gray-darker ml-2">تاریخ :</span>
             <span>{date}</span>
           </div>
-          <div className="mr-8 flex items-center gap-x-2">
-            <FaRegCommentDots className="text-gray-darker" size={16} />
-            <span className="text-gray-darker">20</span>
+          <div className="mr-8 flex items-center gap-x-6">
+            <button className="flex items-center gap-x-2">
+              <FaRegThumbsUp className="text-green/80" size={16} />
+              <span className="text-gray-darker">20</span>
+            </button>
+            <button className="flex items-center gap-x-2">
+              <FaRegThumbsDown className="text-black/30" size={16} />
+              <span className="text-gray-darker">20</span>
+            </button>
           </div>
         </div>
       </div>
