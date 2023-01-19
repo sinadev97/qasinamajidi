@@ -1,10 +1,10 @@
-import { useAnswers } from "../../api/questions";
-import { QuestionDto } from "../../types";
+import { QuestionDto } from "../../api/questions";
+import { useAnswers } from "../../api/questions.api";
 import QuestionCard from "../Home/QuestionCard";
 import AnswerCard from "./AnswerCard";
 
 const QuestionDetails = ({ question }: { question: QuestionDto }) => {
-  const { data: answers, isLoading } = useAnswers({ qId: question.id });
+  const { data: answers } = useAnswers({ qId: question.id });
 
   return (
     <div className="py-8 px-14">

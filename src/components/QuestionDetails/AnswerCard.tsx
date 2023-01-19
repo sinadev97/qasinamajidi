@@ -1,4 +1,4 @@
-import { AnswerDto } from "../../types";
+import { AnswerDto } from "../../api/questions";
 
 const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
   return (

@@ -4,11 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
 import { Provider } from "react-redux";
 import store from "./store";
-
-axios.defaults.baseURL = "http://localhost:3001";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

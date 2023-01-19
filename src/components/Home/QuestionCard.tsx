@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { QuestionDto } from "../../api/questions";
 import routes from "../../routes/routes";
-import { QuestionDto } from "../../types";
 
 const QuestionCard = ({
   question,
