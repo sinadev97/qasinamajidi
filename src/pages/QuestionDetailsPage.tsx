@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useQuestionItem } from "../api/questions.api";
+import { useFetchQuestionItem } from "../api/questions.api";
 import Layout from "../components/Layout";
 import QuestionDetails from "../components/QuestionDetails";
 import NotFound from "./NotFound";
@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 const QuestionDetailsPage = () => {
   const { qId } = useParams<{ qId: string }>();
 
-  const { data: question, isLoading } = useQuestionItem({ qId: +qId! });
+  const { data: question, isLoading } = useFetchQuestionItem({ qId: +qId! });
 
   if (isLoading) return <div className="text-5xl">...Loading</div>;
 

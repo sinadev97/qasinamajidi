@@ -11,7 +11,6 @@ export interface QuestionCreateDto {
 
 export interface AnswerDto {
   userName: string;
-  id: number;
   questionId: number;
   description: string;
 }

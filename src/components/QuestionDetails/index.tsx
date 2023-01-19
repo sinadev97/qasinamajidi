@@ -1,10 +1,30 @@
+import { useState } from "react";
 import { QuestionDto } from "../../api/questions";
-import { useAnswers } from "../../api/questions.api";
+import { useCreateAnswer, useFetchAnswers } from "../../api/questions.api";
 import QuestionCard from "../Home/QuestionCard";
 import AnswerCard from "./AnswerCard";
 
 const QuestionDetails = ({ question }: { question: QuestionDto }) => {
-  const { data: answers } = useAnswers({ qId: question.id });
+  const { data: answers } = useFetchAnswers({ qId: question.id });
+  const [inputValue, setInputValue] = useState("");
+  const [inputError, setInputError] = useState("");
+
+  const { mutate } = useCreateAnswer();
+
+  const createAnswer = () => {
+    if (!inputValue) {
+      return setInputError("لطفا متن پاسخ خود را وارد کنید");
+    } else setInputError("");
+
+    mutate(
+      {
+        userName: "sinamajidi",
+        questionId: question.id,
+        description: inputValue,
+      },
+      { onSuccsess: () => setInputValue("") }
+    );
+  };
 
   return (
     <div className="py-8 px-14">
@@ -13,8 +33,8 @@ const QuestionDetails = ({ question }: { question: QuestionDto }) => {
       <div className="text-2xl font-extrabold mt-6">پاسخ ها</div>
 
       <div className="flex flex-col gap-y-5 mt-4">
-        {answers?.map((answer) => (
-          <AnswerCard key={answer.id} answer={answer} />
+        {answers?.map((answer, index) => (
+          <AnswerCard key={index} answer={answer} />
         ))}
       </div>
 
@@ -26,17 +46,23 @@ const QuestionDetails = ({ question }: { question: QuestionDto }) => {
 
       <div className="relative">
         <textarea
+          value={inputValue}
           className="w-full mt-2.5 rounded-lg resize-none text-sm py-3 px-4 shadow"
           rows={10}
           placeholder="متن پاسخ ..."
+          onChange={(e) => setInputValue(e.target.value)}
         />
 
-        <span className="absolute -bottom-6 right-5 text-[10px] text-error">
-          محل قرارگیری متن خطا
-        </span>
+        {inputError && (
+          <span className="absolute -bottom-6 right-5 text-[10px] text-error">
+            {inputError}
+          </span>
+        )}
       </div>
 
-      <button className="btn btn-primary px-16 mt-12">ارسال پاسخ</button>
+      <button onClick={createAnswer} className="btn btn-primary px-16 mt-12">
+        ارسال پاسخ
+      </button>
     </div>
   );
 };
