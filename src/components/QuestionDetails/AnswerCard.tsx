@@ -1,5 +1,6 @@
 import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 import { AnswerDto } from "../../api/questions";
+import Loader from "../Loader";
 
 const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
   const date = new Date(answer.createDate).toLocaleDateString("fa-IR");
@@ -7,6 +8,7 @@ const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
     hour: "numeric",
     minute: "numeric",
   });
+
   return (
     <div className="rounded-lg bg-gray-lighter shadow">
       <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-between">
