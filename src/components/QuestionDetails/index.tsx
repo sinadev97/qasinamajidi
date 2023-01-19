@@ -22,6 +22,8 @@ const QuestionDetails = ({ question }: { question: QuestionDto }) => {
         questionId: question.id,
         description: inputValue,
         createDate: Date.now(),
+        likedCount: 0,
+        disLikedCount: 0,
       },
       { onSuccsess: () => setInputValue("") }
     );

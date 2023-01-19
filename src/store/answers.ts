@@ -14,6 +14,16 @@ const answersData = createSlice({
       const newState = [...state, action.payload];
       return newState;
     },
+    like: (state, action: { type: string; payload: number }) => {
+      const answer = state.find((a) => a.id === action.payload);
+
+      answer!.likedCount++;
+    },
+    disLike: (state, action: { type: string; payload: number }) => {
+      const answer = state.find((a) => a.id === action.payload);
+
+      answer!.disLikedCount++;
+    },
   },
 });
 

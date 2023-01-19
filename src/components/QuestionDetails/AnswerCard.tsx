@@ -1,16 +1,22 @@
 import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 import { AnswerDto } from "../../api/questions";
+import { useLikeAnswer, useDisLikeAnswer } from "../../api/questions.api";
 import Loader from "../Loader";
 
 const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
+  const { mutate: like, isLoading: isLiking } = useLikeAnswer();
+  const { mutate: disLike, isLoading: isDisliking } = useDisLikeAnswer();
   const date = new Date(answer.createDate).toLocaleDateString("fa-IR");
   const time = new Date(answer.createDate).toLocaleTimeString("fa-IR", {
     hour: "numeric",
     minute: "numeric",
   });
 
+  const loading = isLiking || isDisliking;
+
   return (
     <div className="rounded-lg bg-gray-lighter shadow">
+      {loading && <Loader />}
       <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-x-4">
           <img
@@ -32,20 +38,37 @@ const AnswerCard = ({ answer }: { answer: AnswerDto }) => {
           </div>
           <div className="mr-8 flex items-center gap-x-6">
             <button className="flex items-center gap-x-2">
-              <FaRegThumbsUp className="text-green/80" size={16} />
-              <span className="text-gray-darker">20</span>
+              <FaRegThumbsUp className="text-green" size={16} />
+              <span className="text-gray-darker">{answer.likedCount || 0}</span>
             </button>
             <button className="flex items-center gap-x-2">
               <FaRegThumbsDown className="text-black/30" size={16} />
-              <span className="text-gray-darker">20</span>
+              <span className="text-gray-darker">
+                {answer.disLikedCount || 0}
+              </span>
             </button>
           </div>
         </div>
       </div>
 
-      <div>
-        <div className="px-4 py-5 flex flex-col gap-y-4">
-          <div className="text-sm">{answer.description}</div>
+      <div className="px-4 py-5 flex flex-col gap-y-4">
+        <div className="text-sm">{answer.description}</div>
+
+        <div className="self-end flex items-center gap-x-5">
+          <button
+            onClick={() => like(answer.id)}
+            className="flex items-center gap-x-2.5 px-3 py-2 border rounded-lg text-xs hover:bg-green/20 text-green"
+          >
+            <span>پاسخ خوب بود</span>
+            <FaRegThumbsUp className="text-green" size={16} />
+          </button>
+          <button
+            onClick={() => disLike(answer.id)}
+            className="flex items-center gap-x-2.5 px-3 py-2 border rounded-lg text-xs hover:bg-error/20 text-error"
+          >
+            <span>پاسخ خوب نبود</span>
+            <FaRegThumbsDown className="text-error" size={16} />
+          </button>
         </div>
       </div>
     </div>

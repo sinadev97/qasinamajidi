@@ -5,61 +5,17 @@
       "title": "مشکل در Auth در React",
       "description": "سلام من میخوام یه Auth ساده توی ریکت بسازم ولی این error رو بهم میده و نمیدونم مشکل از کجاست ،‌عکس خروجی console  رو گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
       "createDate": 1674144447773
-    },
-    {
-      "title": "asd",
-      "description": "asd",
-      "createDate": 1674144447773,
-      "id": 2
-    },
-    {
-      "title": "saina",
-      "description": "kkasd",
-      "createDate": 1674144567676,
-      "id": 3
-    },
-    {
-      "title": "jadid",
-      "description": "jaditar\n",
-      "createDate": 1674144803883,
-      "id": 4
     }
   ],
   "answers": [
     {
-      "id": 1,
       "userName": "سینا مجیدی",
       "questionId": 1,
-      "description": "متغیر ENV رو تو فایلت تغییر بدی درست میشه",
-      "createDate": 1674144447773
-    },
-    {
-      "userName": "sinamajidi",
-      "questionId": 2,
-      "description": "mmmn",
-      "createDate": 1674144447773,
-      "id": 2
-    },
-    {
-      "userName": "sinamajidi",
-      "questionId": 4,
-      "description": "asd",
-      "createDate": 1674144447773,
-      "id": 3
-    },
-    {
-      "userName": "sinamajidi",
-      "questionId": 4,
-      "description": "bbb",
-      "createDate": 1674145121977,
-      "id": 4
-    },
-    {
-      "userName": "sinamajidi",
-      "questionId": 4,
-      "description": "nn",
-      "createDate": 1674145161707,
-      "id": 5
+      "description": "متغیر Env رو توی فایلت حذف کن درست میشه",
+      "createDate": 1674155076984,
+      "likedCount": 15,
+      "disLikedCount": 3,
+      "id": 1
     }
   ]
 }

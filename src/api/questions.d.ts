@@ -12,7 +12,10 @@ export interface QuestionCreateDto {
 
 export interface AnswerDto {
   userName: string;
+  id: number;
   questionId: number;
   description: string;
   createDate: number;
+  likedCount: number;
+  disLikedCount: number;
 }

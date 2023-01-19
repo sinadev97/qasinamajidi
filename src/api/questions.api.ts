@@ -1,26 +1,10 @@
 import axios from "./base.api";
-import { buildGetApiWithParams, buildGetApiNoParams } from "../hooks/api";
-import { AnswerDto, QuestionCreateDto, QuestionDto } from "./questions";
 import { questionsActions } from "../store/questions";
-import { Dispatch, useEffect, useState } from "react";
-import { AnyAction } from "redux";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { UIActions } from "../store/UI";
 import { answersActions } from "../store/answers";
-
-export const useAllQuestions = buildGetApiNoParams<QuestionDto[]>(() =>
-  axios.get("/questions")
-);
-
-export const useQuestionItem = buildGetApiWithParams<
-  { qId: number },
-  QuestionDto
->(({ qId }) => axios.get(`/questions/${qId}`));
-
-export const useAnswers = buildGetApiWithParams<{ qId: number }, AnswerDto[]>(
-  ({ qId }) => axios.get("/answers", { params: { questionId: qId } })
-);
 
 export const useFetchAllQuestions = () => {
   const data = useSelector((state: RootState) => state.questions);
@@ -110,6 +94,7 @@ export const useCreateAnswer = () => {
 
 export const useFetchQuestionItem = ({ qId }: { qId: number }) => {
   const questions = useSelector((state: RootState) => state.questions);
+  const data = questions.find((q) => q.id === qId);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const dispatch = useDispatch();
@@ -123,7 +108,54 @@ export const useFetchQuestionItem = ({ qId }: { qId: number }) => {
   }, []);
 
   return {
-    data: questions.find((q) => q.id === qId),
+    data,
+    isLoading,
+    isError,
+  };
+};
+
+export const useLikeAnswer = () => {
+  const AllAnswers = useSelector((store: RootState) => store.answers);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const dispatch = useDispatch();
+
+  return {
+    mutate: (aId: number, options?: { onSuccsess?: () => void }) => {
+      const answer = AllAnswers.find((a) => a.id === aId);
+      setIsLoading(true);
+      dispatch(answersActions.like(aId));
+      axios
+        .put(`/answers/${aId}`, answer)
+        .then((res) => {
+          options?.onSuccsess?.();
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false));
+    },
+    isLoading,
+    isError,
+  };
+};
+export const useDisLikeAnswer = () => {
+  const AllAnswers = useSelector((store: RootState) => store.answers);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const dispatch = useDispatch();
+
+  return {
+    mutate: (aId: number, options?: { onSuccsess?: () => void }) => {
+      const answer = AllAnswers.find((a) => a.id === aId);
+      setIsLoading(true);
+      dispatch(answersActions.disLike(aId));
+      axios
+        .put(`/answers/${aId}`, answer)
+        .then((res) => {
+          options?.onSuccsess?.();
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false));
+    },
     isLoading,
     isError,
   };

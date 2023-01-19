@@ -3,7 +3,7 @@ import Portal from "./Portal";
 const Loader = () => {
   return (
     <Portal>
-      <div className="h-full w-full inset-0 fixed bg-black/5 flex items-center justify-center z-10">
+      <div className="h-full w-full inset-0 fixed bg-black/40 flex items-center justify-center z-10">
         <img src={loaderGif} alt="" />
       </div>
     </Portal>
