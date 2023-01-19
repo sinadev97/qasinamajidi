@@ -3,8 +3,7 @@ import { useNewQuestionState } from "../../../hooks/useNewQuestionState";
 import Portal from "../../Portal";
 
 const NewQuestionModal = () => {
-  const { inputsValue, setTitle, setDescription, closeModal } =
-    useNewQuestionState();
+  const { closeModal } = useNewQuestionState();
   return (
     <Portal>
       <div className="h-full w-full inset-0 fixed bg-black/40 flex items-center justify-center z-10">
@@ -24,19 +23,15 @@ const NewQuestionModal = () => {
             <div className="text-sm text-gray-darker mt-4">موضوع</div>
 
             <input
-              value={inputsValue.title}
               type="text"
               className="bg-white px-6 py-3 rounded-lg mt-2.5 outline-none text-sm shadow-sm"
-              onChange={(e) => setTitle(e.target.value)}
             />
 
             <div className="text-sm text-gray-darker mt-4 ">متن سوال</div>
 
             <textarea
-              value={inputsValue.description}
               className="bg-white px-6 py-3 rounded-lg mt-2.5 outline-none resize-none text-sm shadow-sm"
               rows={8}
-              onChange={(e) => setDescription(e.target.value)}
             />
 
             <div className="self-end flex items-center gap-x-12 mt-6">

@@ -8,10 +8,10 @@ type LayoutProps = {
 
 const Layout = ({ children, title }: LayoutProps) => {
   return (
-    <div>
+    <>
       <Header title={title} />
       {children}
-    </div>
+    </>
   );
 };
 

@@ -1,27 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { newQuestionActions } from "../store/newQuestion";
+import { UIActions } from "../store/UI";
 
 export const useNewQuestionState = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector((store: RootState) => store.newQuestion.isOpen);
-  const inputsValue = useSelector(
-    (store: RootState) => store.newQuestion.inputsValue
+  const isOpen = useSelector(
+    (store: RootState) => store.UI.newQuestionModal.isOpen
   );
 
-  const openModal = () => dispatch(newQuestionActions.openModal());
-  const closeModal = () => dispatch(newQuestionActions.closeModal());
-  const setTitle = (payload: string) =>
-    dispatch(newQuestionActions.setTitle(payload));
-  const setDescription = (payload: string) =>
-    dispatch(newQuestionActions.setDescription(payload));
+  const openModal = () => dispatch(UIActions.openModal());
+  const closeModal = () => dispatch(UIActions.closeModal());
 
   return {
     isOpen,
-    inputsValue,
     openModal,
     closeModal,
-    setTitle,
-    setDescription,
   };
 };

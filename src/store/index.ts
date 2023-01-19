@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import newQuestionState from "./newQuestion";
+import UIState from "./UI";
 
 const store = configureStore({
   reducer: {
-    newQuestion: newQuestionState,
+    UI: UIState,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
