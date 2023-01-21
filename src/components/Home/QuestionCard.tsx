@@ -1,6 +1,7 @@
 import { FaRegCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { QuestionDto } from "../../api/questions";
+import { useAllAnswers } from "../../api/questions.api";
 import routes from "../../routes/routes";
 
 const QuestionCard = ({
@@ -10,14 +11,21 @@ const QuestionCard = ({
   question: QuestionDto;
   isShowDetails?: boolean;
 }) => {
+  const { data: answers, isLoading: answersLoading } = useAllAnswers();
+  const answersCount = answers?.filter(
+    (a) => a.questionId === question.id
+  ).length;
   const date = new Date(question.createDate).toLocaleDateString("fa-IR");
   const time = new Date(question.createDate).toLocaleTimeString("fa-IR", {
     hour: "numeric",
     minute: "numeric",
   });
 
+  const isLoading = answersLoading;
+
   return (
     <div className="rounded-lg bg-gray-lighter shadow">
+      {isLoading}
       <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-x-4">
           <img
@@ -39,7 +47,7 @@ const QuestionCard = ({
           </div>
           <div className="mr-8 flex items-center gap-x-2">
             <FaRegCommentDots className="text-gray-darker" size={16} />
-            <span className="text-gray-darker">20</span>
+            <span className="text-gray-darker">{answersCount || 0}</span>
           </div>
         </div>
       </div>

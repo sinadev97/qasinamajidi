@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import cacheState from "./cacheSlice";
 import UIState from "./UI";
-import questionsState from "./questions";
-import answersState from "./answers";
 
 const store = configureStore({
   reducer: {
     UI: UIState,
-    questions: questionsState,
-    answers: answersState,
+    cache: cacheState,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

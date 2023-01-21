@@ -1,36 +1,66 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import cAxios from "../../api/base.api";
 import { QuestionDto } from "../../api/questions";
-import { useCreateAnswer, useFetchAnswers } from "../../api/questions.api";
+import { useAnswers, useCreateAnswer } from "../../api/questions.api";
+import { questionsActions } from "../../store/cacheSlice";
 import QuestionCard from "../Home/QuestionCard";
+import Loader from "../Loader";
 import AnswerCard from "./AnswerCard";
 
 const QuestionDetails = ({ question }: { question: QuestionDto }) => {
-  const { data: answers } = useFetchAnswers({ qId: question.id });
+  const { data: answers, isLoading: isLoadingAnswers } = useAnswers({
+    qId: question.id,
+  });
+  const { mutate, isLoading: isCreatingAnswer } = useCreateAnswer();
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState("");
-
-  const { mutate } = useCreateAnswer();
+  const dispatch = useDispatch();
 
   const createAnswer = () => {
-    if (!inputValue) {
-      return setInputError("لطفا متن پاسخ خود را وارد کنید");
-    } else setInputError("");
-
-    mutate(
-      {
-        userName: "sinamajidi",
-        questionId: question.id,
-        description: inputValue,
-        createDate: Date.now(),
-        likedCount: 0,
-        disLikedCount: 0,
-      },
-      { onSuccsess: () => setInputValue("") }
-    );
+    if (inputValue) {
+      mutate(
+        {
+          userName: "سینا مجیدی",
+          description: inputValue,
+          createDate: Date.now(),
+          questionId: question.id,
+          disLikedCount: 0,
+          likedCount: 0,
+        },
+        {
+          onSuccess: () => {
+            setInputValue("");
+            setInputError("");
+            cAxios
+              .get("/answers", { params: { questionId: question.id } })
+              .then((res) =>
+                dispatch(
+                  questionsActions.saveData({
+                    cacheKey: ["answers", JSON.stringify({ qId: question.id })],
+                    data: res.data,
+                  })
+                )
+              );
+            cAxios.get("/answers").then((res) =>
+              dispatch(
+                questionsActions.saveData({
+                  cacheKey: ["allAnswers"],
+                  data: res.data,
+                })
+              )
+            );
+          },
+        }
+      );
+    } else setInputError("لطفا متن پاسخ را وارد کنید");
   };
+
+  const isLoading = isCreatingAnswer || isLoadingAnswers;
 
   return (
     <div className="py-8 px-14">
+      {isLoading && <Loader />}
       <QuestionCard isShowDetails question={question} />
 
       <div className="text-2xl font-extrabold mt-6">پاسخ ها</div>

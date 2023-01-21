@@ -8,6 +8,7 @@ export interface QuestionDto {
 export interface QuestionCreateDto {
   title: string;
   description: string;
+  createDate: number;
 }
 
 export interface AnswerDto {
@@ -15,6 +16,15 @@ export interface AnswerDto {
   id: number;
   questionId: number;
   description: string;
+  createDate: number;
+  likedCount: number;
+  disLikedCount: number;
+}
+
+export interface AnswerCreateDto {
+  userName: string;
+  description: string;
+  questionId: number;
   createDate: number;
   likedCount: number;
   disLikedCount: number;
