@@ -1,13 +1,13 @@
-import { useFetchAllQuestions } from "../../api/questions.api";
+import { useQuestions } from "../../api/questions.api";
 import Loader from "../Loader";
 import QuestionCard from "./QuestionCard";
 
 const Home = () => {
-  const { data: questions, isLoading } = useFetchAllQuestions();
+  const { data: questions, isLoading: questionsLoading } = useQuestions();
 
   return (
     <div className="py-8 px-14 flex flex-col gap-y-5">
-      {isLoading && <Loader />}
+      {questionsLoading && <Loader />}
       {questions
         ?.slice(0)
         .reverse()
